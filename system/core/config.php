@@ -38,4 +38,15 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', '_api');
+define('DB_NAME', 'gestorjr');
+
+// TABLES NAMES
+define('ASSOCIATES_NAME', 'associates');
+define('PROJECTS_NAME', 'projects');
+define('CLIENTS_NAME','clients');
+define('SERVICES_NAME', 'services');
+define('COMPLAINTS_NAME', 'complaints');
+define('CALENDAR_NAME', 'calendar');
+define('INVENTORY_NAME', 'inventory');
+define('algorithm', 'AES-128-CBC');
+define('Senha','gestorjr919269');
