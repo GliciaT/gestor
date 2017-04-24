@@ -10,7 +10,7 @@ class Associate extends Controller
 	}
 
 	public function test(){
-		//testes
+		//teste
 	}
 
 	public function xd(){
@@ -25,10 +25,10 @@ class Associate extends Controller
 	public function removerAssociado($data=""){
 		$this->model['associate_model']->delete(ASSOCIATES_NAME,"WHERE id= ' " . $data['id'] . " ' ");
 	}
-	public function exibirAssociado($id){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $id['id']. " ' ");
-		$this->model['associate_model']->get_result();
-		var_dump($id);
+	public function exibirAssociado($data){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $data['id']. " ' ");
+		$associado = $this->model['associate_model']->get_result();
+		var_dump($associado);
 	}
 }	
 ?>
