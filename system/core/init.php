@@ -66,7 +66,7 @@ if(isset($url[0])){
 		#Execute the controller method
 		if(isset($url[1])){
 			if(method_exists($_CONTROLLER, $url[1])){
-				call_user_method($url[1], $_CONTROLLER);
+				call_user_func_array(array($_CONTROLLER,$url[1]),array());
 			}
 			else echo 'The '.CONTROLLERS_PATH.'<strong>'.$url[0].'.php</strong>'.' Class does not have <strong>'.$url[1].'( )</strong> method.';
 		}
