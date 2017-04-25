@@ -8,26 +8,26 @@ class Clients extends Controller
 		$this->load_model('clients_model');
 	}
 	public function test(){
-		$cliente = array('name' => 'Vitória', 'ddd_1' => '81', 'tel_primary' => '111111111', 'ddd_2' => '81', 'tel_optional' => '222222222', 'email' => 'email@teste');
-		$this->adicionarCliente($cliente);
+		$cliente = array('id' => '10', 'name' => 'Vitória', 'ddd_1' => '81', 'tel_primary' => '111111111', 'ddd_2' => '81', 'tel_optional' => '222222222', 'email' => 'email@teste');
+		//$this->adicionarCliente($cliente);
 		$this->exibirCliente($cliente);
 	}
 
 	public function adicionarCliente($data=""){
-		$this->model['cliente_model']->insert(CLIENTS_NAME, $data);
+		$this->model['clients_model']->insert(CLIENTS_NAME, $data);
   }
 
 	public function alterarCliente(){
-		$this->model['cliente_model']->update(CLIENTS_NAME,$data,"WHERE id = '" .$data['id']. "'");
+		$this->model['clients_model']->update(CLIENTS_NAME,$data,"WHERE id = '" .$data['id']. "'");
   }
 
 	public function removerCliente(){
-		$this->model['cliente_model']->delete(CLIENTS_NAME,$data,"WHERE id = '" .$data['id']. "'");
+		$this->model['clients_model']->delete(CLIENTS_NAME,$data,"WHERE id = '" .$data['id']. "'");
   }
 
 	public function exibirCliente($data=""){
-    $this->model['cliente_model']->select(CLIENTS_NAME,"WHERE id='" . $data['id']. "'");
-      $cliente = $this->model['cliente_model']->get_result();
+    $this->model['clients_model']->select(CLIENTS_NAME,"WHERE id='" . $data['id']. "'");
+      $cliente = $this->model['clients_model']->get_result();
       var_dump($cliente);
     }
 }
