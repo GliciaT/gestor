@@ -11,24 +11,93 @@ class Associate extends Controller
 
 	public function test(){
 		//teste
+		$associado = array('id'=>'18','username'=>'glicia banana', 'password'=>'123', 'email'=>'opafion@fon.com');
+		$this->adicionarAssociado($associado);
+		$this->exibirAssociado($associado);
 	}
 
 	public function xd(){
 		echo "entrou";
 	}
 	public function adicionarAssociado($data=""){
-		$this->model['associate_model']->insert(ASSOCIATES_NAME, $data);
+		if(is_null($data)){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "Data eh nula";
+			return;
+		}
+
+		$status = $this->model['associate_model']->insert(ASSOCIATES_NAME, $data);
+		
+		if(!$status){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "O Associado nao foi adicionado";
+			return;
+		}
 	}
 	public function alterarAssociado($data=""){
-		$this->model['associate_model']->update(ASSOCIATES_NAME, $data, "WHERE id = '" . $data['id'] . " ' ");
+		if(is_null($data)){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "Data eh nula";
+			return;
+		}
+
+		$status = $this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $data['id']. " ' ");
+		
+		if(!$status){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "O Associado nao existe";
+			return;
+		}
+
+		$status = $this->model['associate_model']->update(ASSOCIATES_NAME, $data, "WHERE id = '" . $data['id'] . " ' ");
+
+		if(!$status){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "O Associado nao foi alterado";
+			return;
+		}
 	}
 	public function removerAssociado($data=""){
-		$this->model['associate_model']->delete(ASSOCIATES_NAME,"WHERE id= ' " . $data['id'] . " ' ");
+		if(is_null($data)){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "Data eh nula";
+			return;
+		}
+
+		$status = $this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $data['id']. " ' ");
+		
+		if(!$status){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "O Associado nao existe";
+			return;
+		}
+
+		$status = $this->model['associate_model']->delete(ASSOCIATES_NAME,"WHERE id= ' " . $data['id'] . " ' ");
+
+		if(!$status){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "Nao foi possivel remover o Associado";
+			return;
+		}
 	}
 	public function exibirAssociado($data){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $data['id']. " ' ");
+		if(is_null($data)){
+			$this->return['success'] = FALSE;
+			$this->return['error'] .= "Data eh nula";
+			return;
+		}
+
+		$status = $this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE id = ' " . $data['id']. " ' ");
+		
+		if($status){
 		$associado = $this->model['associate_model']->get_result();
 		var_dump($associado);
+		}
+		else{
+			$this->return['success'] = TRUE;
+			$this->return['error'] = "Associado nao existe ou houve um erro";
+
+		}
 	}
 }	
 ?>
