@@ -11,9 +11,6 @@ class Associate extends Controller
 
 	public function test(){
 		//teste
-		$associado = array('id'=>'18','username'=>'glicia banana', 'password'=>'123', 'email'=>'opafion@fon.com');
-		$this->adicionarAssociado($associado);
-		$this->exibirAssociado($associado);
 	}
 
 	public function xd(){
