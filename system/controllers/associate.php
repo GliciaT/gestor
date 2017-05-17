@@ -98,31 +98,29 @@ class Associate extends Controller
 		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE 1");
 		$this->return['associates'] = $this->model['associate_model']->get_result();
 	}
-	
-	/*Entendi que o listarAssociadosParticular funcionaria para pesquisar algum nome, id ou username(informações basicas que alguem poderia saber). Pensei em incluir o name_id, mas entendi que ele não seria algo que alguem de fora tivesse acesso. Caso esteja errada, me dê uma ideia do que é para fazer que eu corrijo. */
 
 	public function listarAssociadosParticular($data=""){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE username = '" . $data . "' or name = '" . $data ."' or id = '" . $data ."' ");
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE username = '" . $data[username] . "'");
 		$this->return['associates'] = $this->model['associate_model']->get_result();
 	}
 
-	public function listarAssociadosPorSetor($setor=""){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE sector = '" . $setor . "'");
+	public function listarAssociadosPorSetor($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE sector = '" . $data[sector] . "'");
 		$this->return = $this->model['associate_model']->get_result();
 	}
 
-	public function listarAssociadosPorCargo($cargo=""){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE position = '" . $cargo . "'");
+	public function listarAssociadosPorCargo($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE position = '" . $data[position] . "'");
 		$this->return = $this->model['associate_model']->get_result();
 	}
 
-	public function listarAssociadosPorEngenharia($engenharia=""){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE engineering = '" . $engenharia . "'");
+	public function listarAssociadosPorEngenharia($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE engineering = '" . $data[engineering] . "'");
 		$this->return = $this->model['associate_model']->get_result();
 	}
 
-	public function listarAssociadosPorStatus($status=""){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE status = '" . $status . "'");
+	public function listarAssociadosPorStatus($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE status = '" . $data[status] . "'");
 		$this->return = $this->model['associate_model']->get_result();
 	}
 }	
