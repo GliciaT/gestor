@@ -98,9 +98,11 @@ class Associate extends Controller
 		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE 1");
 		$this->return['associates'] = $this->model['associate_model']->get_result();
 	}
+	
+	/*Entendi que o listarAssociadosParticular funcionaria para pesquisar algum nome, id ou username(informações basicas que alguem poderia saber). Pensei em incluir o name_id, mas entendi que ele não seria algo que alguem de fora tivesse acesso. Caso esteja errada, me dê uma ideia do que é para fazer que eu corrijo. */
 
-	public function listarAssociadosParticular($data){
-		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE username = '" . $data['username'] . "'");
+	public function listarAssociadosParticular($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE username = '" . $data . "' or name = '" . $data ."' or id = '" . $data ."' ");
 		$this->return['associates'] = $this->model['associate_model']->get_result();
 	}
 
