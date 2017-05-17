@@ -13,9 +13,6 @@ class Associate extends Controller
 		//teste
 	}
 
-	public function xd(){
-		echo "entrou";
-	}
 	public function adicionarAssociado($data=""){
 		if(is_null($data)){
 			$this->return['success'] = FALSE;
@@ -95,6 +92,38 @@ class Associate extends Controller
 			$this->return['error'] = "Associado nao existe ou houve um erro";
 
 		}
+	}
+
+	public function listarTodosAssociados(){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE 1");
+		$this->return['associates'] = $this->model['associate_model']->get_result();
+	}
+	
+	/*Entendi que o listarAssociadosParticular funcionaria para pesquisar algum nome, id ou username(informações basicas que alguem poderia saber). Pensei em incluir o name_id, mas entendi que ele não seria algo que alguem de fora tivesse acesso. Caso esteja errada, me dê uma ideia do que é para fazer que eu corrijo. */
+
+	public function listarAssociadosParticular($data=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE username = '" . $data . "' or name = '" . $data ."' or id = '" . $data ."' ");
+		$this->return['associates'] = $this->model['associate_model']->get_result();
+	}
+
+	public function listarAssociadosPorSetor($setor=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE sector = '" . $setor . "'");
+		$this->return = $this->model['associate_model']->get_result();
+	}
+
+	public function listarAssociadosPorCargo($cargo=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE position = '" . $cargo . "'");
+		$this->return = $this->model['associate_model']->get_result();
+	}
+
+	public function listarAssociadosPorEngenharia($engenharia=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE engineering = '" . $engenharia . "'");
+		$this->return = $this->model['associate_model']->get_result();
+	}
+
+	public function listarAssociadosPorStatus($status=""){
+		$this->model['associate_model']->select(ASSOCIATES_NAME, "WHERE status = '" . $status . "'");
+		$this->return = $this->model['associate_model']->get_result();
 	}
 }	
 ?>
